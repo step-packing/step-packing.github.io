@@ -141,12 +141,13 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/binpackingprocess-step-5-25.mp4"
+      <video id="teaser" autoplay muted loop playsinline height="100%" controls>
+        <source src="./static/videos/hero-video-bpp-process-pareto.mp4"
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        STEP (Space-Time Efficient Packing) explicitly accounts for the time required to reorient and handle packages, jointly reasoning over space utilization and operational time to ensure efficient and fast packing.
+        STEP (Space-Time Efficient Packing) explicitly accounts for the time required to reorient and handle packages, jointly reasoning over space utilization and operational time.
+        STEP learns to balance speed and packing efficiency through optimized item and face selection. This demo shows packing behaviors under different space and time weights, ranging from fast execution to dense packing.
       </h2>
     </div>
   </div>
@@ -212,34 +213,86 @@
 </section>
 -->
 
+
+
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
+    <!-- Overview. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Overview</h2>
+      </div>
+    </div>
+    
+    <div class="columns is-vcentered">
+      <!-- Image column -->
+      <div class="column is-half">
+        <figure class="image">
+          <img src="./static/images/different-faces-box.png" alt="Different faces of a box showing various grasp orientations">
+          <figcaption class="has-text-centered is-size-9 has-text-grey" style="margin-top: 0.5rem;">
+            Face selection matters: different grasp directions achieve better packing through reorientation, but also affects how quickly and safely a robot can pick and place items.
+          </figcaption>
+        </figure>
+      </div>
+      
+      <!-- Text column -->
+      <div class="column is-half">
         <div class="content has-text-justified">
           <p>
-            Robotic bin packing is widely deployed in warehouse automation, with current systems achieving robust performance through heuristic and learning-based strategies. These systems must balance compact placement with rapid execution, where actions such as selecting alternative items or reorienting them can improve space utilization but introduce additional time. We propose a selection-based formulation that explicitly reasons over this trade-off: at each step, the robot evaluates multiple candidate actions, weighing expected packing benefit against estimated operational time. This enables time-aware strategies that selectively accept increased operational time when it yields meaningful spatial improvements. Our method, STEP (Space-Time Efficient Packing), uses a Transformer-based policy conditioned on dynamic preferences,  and allows generalization across candidate set sizes and integration with standard placement modules. It achieves higher packing density without compromising operational time.
+            Robotic bin packing in warehouses demands a careful balance between two often conflicting goals: maximizing space utilization and minimizing operational time.
+            STEP (Space-Time Efficient Packing) addresses this trade-off by learning to select not just which item to pack, but also which face to grasp it from. Each choice influences both the quality of placement and the time required to execute it. Our method uses a preference-conditioned multi-objective policy that dynamically weighs packing efficiency against time cost, adapting its strategy based on user-specified preferences.
+            While STEP is trained and evaluated in simulation, its design is grounded in real-world robotic constraints which include grasp direction, object surface type, and the impact of transport failures. These factors can directly be abstracted into the time model used during training, ensuring the policy reflects practical deployment conditions.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
+</section>
 
-    <!-- Paper video. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- System Architecture. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <video id="teaser" autoplay muted loop playsinline height="100%" controls>
-          <source src="./static/videos/full-submitted-video-720.mp4"
-                type="video/mp4">
-        </video>
+        <h2 class="title is-3">System Architecture</h2>
       </div>
     </div>
-    <!--/ Paper video. -->
+    
+    <!-- Image section -->
+    <div class="columns is-centered">
+      <div class="column is-four-quarters">
+        <figure class="image">
+          <img src="./static/images/system_architecture.png" alt="System Architecture">
+        </figure>
+      </div>
+    </div>
+    
+    <!-- Text section -->
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            STEP frames bin packing as a multi-candidate, multi-objective selection problem that aims to balance space utilization and operational time. Each graspable face of each item in the buffer is treated as a distinct candidate in the selection process.
+          </p>
+          <p>The policy receives as input:</p>
+          <ul>
+            <li>Current bin state (as empty maximal spaces)</li> 
+            <li>Item-face pairs with their selected placement position and rotation</li>
+            <li>Estimated operational time for each item-face pair</li>
+            <li>Preference vector specifying space-time trade-off</li>
+          </ul>
+          <p>
+           The Transformer-Select module processes the bin and item-face features to produce embeddings.
+
+</p><p>These embeddings are then combined with the preference vector in the actor and critic heads to compute scores over all item-face candidates.
+
+</p><p>The highest-scoring candidate is selected; the bin state is updated, and a new item enters the buffer.
+</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
 
 
 <!-- <section class="section">
@@ -382,6 +435,34 @@
   </div>
 </section> -->
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Robotic bin packing is widely deployed in warehouse automation, with current systems achieving robust performance through heuristic and learning-based strategies. These systems must balance compact placement with rapid execution, where actions such as selecting alternative items or reorienting them can improve space utilization but introduce additional time. We propose a selection-based formulation that explicitly reasons over this trade-off: at each step, the robot evaluates multiple candidate actions, weighing expected packing benefit against estimated operational time. This enables time-aware strategies that selectively accept increased operational time when it yields meaningful spatial improvements. Our method, STEP (Space-Time Efficient Packing), uses a Transformer-based policy conditioned on dynamic preferences,  and allows generalization across candidate set sizes and integration with standard placement modules. It achieves higher packing density without compromising operational time.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <video id="teaser" autoplay muted loop playsinline height="100%" controls>
+          <source src="./static/videos/full-submitted-video-720.mp4"
+                type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
 
 <footer class="footer">
   <div class="container">
