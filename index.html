@@ -294,6 +294,53 @@
 </section>
 
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Real-world Insights. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Real-World Insights</h2>
+      </div>
+    </div>
+    <!-- Grasp Sides -->
+    <div class="columns is-vcentered">
+      <!-- Video column -->
+      <div class="column is-half">
+        <video autoplay muted loop playsinline height="100%" controls>
+          <source src="./static/videos/robot-grasp-sides.mp4" type="video/mp4">
+        </video>
+      </div>
+      
+      <!-- Text column -->
+      <div class="column is-half">
+        <div class="content has-text-justified">
+          <p>
+            Different grasp directions directly affect how quickly and reliably the robot can pick an item. While top grasps are often faster, side grasps can be slower. Instead of grasping an item from a different face, a robot might also reorient it by first picking from the top face, placing it in a new orientation, and then picking it up again. Importantly, reorientation times are not universal but depend strongly on the specific robotic setup, hardware, and motion planning constraints. STEP abstracts these different strategies into a unified time cost, which is explicitly taken into account when planning for bin packing. In STEP, each graspable face is treated as a separate candidate with its own time cost.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Trajectory Duration -->
+    <div class="columns is-vcentered">
+      <!-- Video column -->
+      <div class="column is-half">
+        <video autoplay muted loop playsinline height="100%" controls>
+          <source src="./static/videos/robot-trajectory-duration.mp4" type="video/mp4">
+        </video>
+      </div>
+      
+      <!-- Text column -->
+      <div class="column is-half">
+        <div class="content has-text-justified">
+          <p>
+            When a robot transports a box with an uneven or difficult surface too quickly, the suction cups may lose contact, causing the package to drop. Slowing down the transport avoids failure, but at the cost of added operation time. The suction-cup dynamics with the box surface directly affect the safety and reliability of transport, and these effects are dependent on the specific setup and item. Since STEP explicitly optimizes for operational time, such behaviors are abstracted into face-dependent time penalties during bin packing. In training, we defined three categories of surfaces (smooth, plastic-wrapped, and package-labeled) and randomly assigned each box face to one of these categories in simulation, with each category associated with a fixed time penalty.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
 
 <!-- <section class="section">
   <div class="container is-max-desktop">
@@ -437,18 +484,6 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Robotic bin packing is widely deployed in warehouse automation, with current systems achieving robust performance through heuristic and learning-based strategies. These systems must balance compact placement with rapid execution, where actions such as selecting alternative items or reorienting them can improve space utilization but introduce additional time. We propose a selection-based formulation that explicitly reasons over this trade-off: at each step, the robot evaluates multiple candidate actions, weighing expected packing benefit against estimated operational time. This enables time-aware strategies that selectively accept increased operational time when it yields meaningful spatial improvements. Our method, STEP (Space-Time Efficient Packing), uses a Transformer-based policy conditioned on dynamic preferences,  and allows generalization across candidate set sizes and integration with standard placement modules. It achieves higher packing density without compromising operational time.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
 
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
@@ -461,6 +496,20 @@
       </div>
     </div>
     <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Robotic bin packing is widely deployed in warehouse automation, with current systems achieving robust performance through heuristic and learning-based strategies. These systems must balance compact placement with rapid execution, where actions such as selecting alternative items or reorienting them can improve space utilization but introduce additional time. We propose a selection-based formulation that explicitly reasons over this trade-off: at each step, the robot evaluates multiple candidate actions, weighing expected packing benefit against estimated operational time. This enables time-aware strategies that selectively accept increased operational time when it yields meaningful spatial improvements. Our method, STEP (Space-Time Efficient Packing), uses a Transformer-based policy conditioned on dynamic preferences,  and allows generalization across candidate set sizes and integration with standard placement modules. It achieves higher packing density without compromising operational time.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    
   </div>
 </section>
 
