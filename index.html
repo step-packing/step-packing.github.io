@@ -34,6 +34,8 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="./static/js/pareto-chart.js"></script>
 </head>
 <body>
 
@@ -250,6 +252,72 @@
 
 <section class="section">
   <div class="container is-max-desktop">
+    <!-- Real-world Insights. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Real-World Insights</h2>
+      </div>
+    </div>
+    <!-- Grasp Sides -->
+    <div class="columns is-vcentered">
+      <!-- Video column -->
+      <div class="column is-half">
+        <video autoplay muted loop playsinline height="100%" controls>
+          <source src="./static/videos/robot-grasp-sides.mp4" type="video/mp4">
+        </video>
+      </div>
+      
+      <!-- Text column -->
+      <div class="column is-half">
+        <div class="content has-text-justified">
+          <p>
+          Different grasp directions directly affect how quickly and reliably the robot can pick an item:
+          <ul>
+            <li>Top grasps are often faster.</li>
+            <li>Side grasps can be slower.</li>
+            <li>A robot may also reorient an item by first picking from the top face, placing it in a new orientation, and then picking it again.</li>
+          </ul>
+          <p>
+            Importantly, reorientation times are not universal - they depend on the specific robotic setup, hardware, and motion planning constraints. 
+            STEP abstracts all of these strategies into a unified time cost, which is explicitly taken into account when planning for bin packing. 
+            Each graspable face is treated as a separate candidate with its own time cost.
+          </p>
+        </p>
+        </div>
+      </div>
+    </div>
+    <!-- Trajectory Duration -->
+    <div class="columns is-vcentered">
+      
+      <!-- Text column -->
+      <div class="column is-half">
+        <div class="content has-text-justified">
+          <p>
+            Transport speed also affects reliability:
+            <ul>
+              <li>If a box with an uneven or difficult surface is moved too quickly, the suction cups may lose contact and the package can drop.</li>
+              <li>Slowing down avoids failure, but increases operation time.</li>
+            </ul>
+            <p>
+              The suction-cup dynamics with the box surface directly influence the safety and reliability of transport, and these effects depend on the specific setup and item. 
+              Since STEP explicitly optimizes for operational time, such behaviors are abstracted into face-dependent time penalties during bin packing. 
+              In training, we defined three surface categories - smooth, plastic-wrapped, and package-labeled — and randomly assigned each box face to one of these categories in simulation, with each category given a fixed time penalty.
+            </p>
+          </p>
+        </div>
+      </div>
+
+      <!-- Video column -->
+      <div class="column is-half">
+        <video autoplay muted loop playsinline height="100%" controls>
+          <source src="./static/videos/robot-trajectory-duration.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
     <!-- System Architecture. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -283,62 +351,62 @@
           <p>
            The Transformer-Select module processes the bin and item-face features to produce embeddings.
 
-</p><p>These embeddings are then combined with the preference vector in the actor and critic heads to compute scores over all item-face candidates.
+          </p><p>These embeddings are then combined with the preference vector in the actor and critic heads to compute scores over all item-face candidates.
 
-</p><p>The highest-scoring candidate is selected; the bin state is updated, and a new item enters the buffer.
-</p>
+          </p><p>The highest-scoring candidate is selected; the bin state is updated, and a new item enters the buffer.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Real-world Insights. -->
+    <!-- Pareto Front Section. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Real-World Insights</h2>
+        <h2 class="title is-3">From Space to Time: A Pareto Perspective</h2>
       </div>
     </div>
-    <!-- Grasp Sides -->
-    <div class="columns is-vcentered">
-      <!-- Video column -->
-      <div class="column is-half">
-        <video autoplay muted loop playsinline height="100%" controls>
-          <source src="./static/videos/robot-grasp-sides.mp4" type="video/mp4">
-        </video>
-      </div>
-      
-      <!-- Text column -->
-      <div class="column is-half">
+
+    <!-- Text section -->
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p>
-            Different grasp directions directly affect how quickly and reliably the robot can pick an item. While top grasps are often faster, side grasps can be slower. Instead of grasping an item from a different face, a robot might also reorient it by first picking from the top face, placing it in a new orientation, and then picking it up again. Importantly, reorientation times are not universal but depend strongly on the specific robotic setup, hardware, and motion planning constraints. STEP abstracts these different strategies into a unified time cost, which is explicitly taken into account when planning for bin packing. In STEP, each graspable face is treated as a separate candidate with its own time cost.
+            Space utilization and operational time are inherently conflicting in robotic bin packing:
+          </p>
+          <ul>
+            <li>Achieving denser packing often requires extra reorientations and longer actions.</li>
+            <li>Minimizing execution time, in contrast, can lead to wasted bin space.</li>
+          </ul>
+          <p>
+            STEP resolves this conflict through a <strong>preference vector</strong>, which defines how much weight to place on each objective. By tuning this vector, the policy can prioritize space efficiency, time efficiency, or a balance of both within a single framework.
+          </p>
+          <p>
+            The <strong>Pareto front</strong> below illustrates the achievable trade-offs. <strong>STEP-n</strong> denotes a policy with <em>n</em> items in the buffer in the semi-online setting. The figure shows results for buffers of size 1, 3, and 5, each evaluated across preference vectors ranging from 0 to 1 for both objectives. Larger buffers provide more candidate choices and improve space utilization, while the preference vector governs how the trade-off between space and time is considered, respectively.
           </p>
         </div>
       </div>
     </div>
-    <!-- Trajectory Duration -->
-    <div class="columns is-vcentered">
-      <!-- Video column -->
-      <div class="column is-half">
-        <video autoplay muted loop playsinline height="100%" controls>
-          <source src="./static/videos/robot-trajectory-duration.mp4" type="video/mp4">
-        </video>
-      </div>
-      
-      <!-- Text column -->
-      <div class="column is-half">
-        <div class="content has-text-justified">
-          <p>
-            When a robot transports a box with an uneven or difficult surface too quickly, the suction cups may lose contact, causing the package to drop. Slowing down the transport avoids failure, but at the cost of added operation time. The suction-cup dynamics with the box surface directly affect the safety and reliability of transport, and these effects are dependent on the specific setup and item. Since STEP explicitly optimizes for operational time, such behaviors are abstracted into face-dependent time penalties during bin packing. In training, we defined three categories of surfaces (smooth, plastic-wrapped, and package-labeled) and randomly assigned each box face to one of these categories in simulation, with each category associated with a fixed time penalty.
-          </p>
+
+    <!-- Image section -->
+    <div class="columns is-centered">
+      <div class="column is-four-quarters">
+        <div class="has-text-centered" style="margin-bottom: 5px;">
+          <span class="tag is-info is-light is-medium">
+            <i class="fas fa-mouse-pointer" style="margin-right: 8px;"></i>
+            Hover over points to see detailed values
+          </span>
         </div>
+        <div id="pareto-chart" style="width: 100%; height: 600px;"></div>
       </div>
     </div>
+
+  </div>
 </section>
+
 
 
 
