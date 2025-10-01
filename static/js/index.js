@@ -1,78 +1,84 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
-var INTERP_BASE = "./static/interpolation/stacked";
-var NUM_INTERP_FRAMES = 240;
+// Removed interpolation code - not needed
 
-var interp_images = [];
-function preloadInterpolationImages() {
-  for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
-    var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
-    interp_images[i] = new Image();
-    interp_images[i].src = path;
-  }
-}
-
-function setInterpolationImage(i) {
-  var image = interp_images[i];
-  image.ondragstart = function() { return false; };
-  image.oncontextmenu = function() { return false; };
-  $('#interpolation-image-wrapper').empty().append(image);
-}
-
+// Video overlay functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const videoContainers = document.querySelectorAll('.video-container');
+    
+    videoContainers.forEach((container) => {
+        const overlay = container.querySelector('.video-overlay');
+        if (!overlay) return;
+        
+        const overlayTitle = overlay.querySelector('.overlay-title');
+        const overlayComparison = overlay.querySelector('.overlay-comparison');
+        const overlayAnalysis = overlay.querySelector('.overlay-analysis');
+        
+        // Populate overlay content from data attributes
+        if (overlayTitle && container.dataset.method) {
+            overlayTitle.textContent = container.dataset.method;
+        }
+        
+        if (overlayComparison && container.dataset.comparison) {
+            overlayComparison.textContent = container.dataset.comparison;
+        }
+        
+        if (overlayAnalysis && container.dataset.analysis) {
+            overlayAnalysis.textContent = container.dataset.analysis;
+        }
+        
+        // Pause/play video on hover
+        container.addEventListener('mouseenter', function() {
+            const video = container.querySelector('video');
+            if (video) video.pause();
+        });
+        
+        container.addEventListener('mouseleave', function() {
+            const video = container.querySelector('video');
+            if (video) video.play();
+        });
+    });
+});
 
 $(document).ready(function() {
+    console.log('jQuery document ready fired!');
     // Check for click events on the navbar burger icon
     $(".navbar-burger").click(function() {
       // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
       $(".navbar-burger").toggleClass("is-active");
       $(".navbar-menu").toggleClass("is-active");
-
     });
 
     var options = {
-			slidesToScroll: 1,
-			slidesToShow: 3,
-			loop: true,
-			infinite: true,
-			autoplay: false,
-			autoplaySpeed: 3000,
+            slidesToScroll: 1,
+            slidesToShow: 3,
+            loop: true,
+            infinite: true,
+            autoplay: false,
+            autoplaySpeed: 3000,
     }
 
-		// Initialize all div with carousel class
+        // Initialize all div with carousel class
     var carousels = bulmaCarousel.attach('.carousel', options);
 
     // Loop on each carousel initialized
     for(var i = 0; i < carousels.length; i++) {
-    	// Add listener to  event
-    	carousels[i].on('before:show', state => {
-    		console.log(state);
-    	});
+        // Add listener to  event
+        carousels[i].on('before:show', state => {
+            console.log(state);
+        });
     }
 
     // Access to bulmaCarousel instance of an element
     var element = document.querySelector('#my-element');
     if (element && element.bulmaCarousel) {
-    	// bulmaCarousel instance is available as element.bulmaCarousel
-    	element.bulmaCarousel.on('before-show', function(state) {
-    		console.log(state);
-    	});
+        // bulmaCarousel instance is available as element.bulmaCarousel
+        element.bulmaCarousel.on('before-show', function(state) {
+            console.log(state);
+        });
     }
 
-    /*var player = document.getElementById('interpolation-video');
-    player.addEventListener('loadedmetadata', function() {
-      $('#interpolation-slider').on('input', function(event) {
-        console.log(this.value, player.duration);
-        player.currentTime = player.duration / 100 * this.value;
-      })
-    }, false);*/
-    preloadInterpolationImages();
-
-    $('#interpolation-slider').on('input', function(event) {
-      setInterpolationImage(this.value);
-    });
-    setInterpolationImage(0);
-    $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
+    // Removed interpolation slider code - not needed
 
     bulmaSlider.attach();
-
-})
+});

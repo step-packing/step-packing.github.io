@@ -155,3 +155,89 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+/* --- Video Overlay Section --- */
+.column .video-container {
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    overflow: visible !important; /* Changed from hidden to visible */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    display: block !important;
+    height: auto !important;
+}
+
+.column .video-container video {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 1 !important; /* Lower z-index than overlay */
+}
+
+.video-overlay h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+}
+
+.video-overlay p {
+    margin: 0;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.overlay-content {
+  text-align: center;
+  max-width: 90%;
+}
+
+.overlay-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #000000 !important; /* Black */
+}
+
+.overlay-comparison {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #555555 !important; /* Dark grey */
+  font-style: italic;
+}
+
+.overlay-analysis {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #000000 !important; /* Black */
+}
+
+html body .video-container {
+    position: relative !important;
+}
+
+html body .video-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: none !important;
+    background: rgba(255, 221, 228, 0.98) !important; /* Lighter pastel pink with very high opacity */
+    color: #333 !important; /* Dark text for better contrast */
+    padding: 20px !important;
+    z-index: 1000 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    border-radius: 10px !important;
+}
+
+html body .video-container:hover .video-overlay {
+    display: flex !important;
+}
