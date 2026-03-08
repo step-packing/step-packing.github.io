@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Expanding Picking Actions for Time-Efficient Online 3D Bin Packing">
+        content="Preference-Conditioned Reinforcement Learning for Space-Time Efficient Online 3D Bin Packing">
   <meta name="keywords" content="BinPacking, STEP, Time-Efficient">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Expanding Picking Actions for Time-Efficient Online 3D Bin Packing</title>
+  <title>Preference-Conditioned Reinforcement Learning for Space-Time Efficient Online 3D Bin Packing</title>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QHEMNFW1LR"></script>
@@ -48,34 +48,34 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Expanding Picking Actions for Time-Efficient Online 3D Bin Packing</h1>
-          <!-- TODO: ADD LATER -->
-          <!-- <div class="is-size-5 publication-authors">
+          <h1 class="title is-1 publication-title">Preference-Conditioned Reinforcement Learning for Space-Time Efficient Online 3D Bin Packing</h1>
+          <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
+              <a href="https://www.linkedin.com/in/nikita-sarawgi">Nikita Sarawgi</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+              <a href="https://omey-manyar.com/">Omey M. Manyar</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+              Fan Wang<sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+              Thinh H. Nguyen<sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+              <a href="https://danielseita.github.io/">Daniel Seita</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+              <a href="https://sites.usc.edu/skgupta/">Satyandra K. Gupta</a><sup>1</sup>,
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
-          </div> -->
+            <span class="author-block"><sup>1</sup>University of Southern California,</span>
+            <span class="author-block"><sup>2</sup>Amazon Robotics</span>
+          </div>
+
+          <div class="is-size-5" style="margin-top: 0.5rem;">
+            <span style="color: #800020; font-weight: 600;">Accepted to ICRA 2025</span>
+          </div>
 
           <!-- TODO: ADD LATER -->
           <!-- <div class="column has-text-centered">
@@ -482,7 +482,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Robotic bin packing is widely deployed in warehouse automation, with current systems achieving robust performance through heuristic and learning-based strategies. These systems must balance compact placement with rapid execution, where actions such as selecting alternative items or reorienting them can improve space utilization but introduce additional time. We propose a selection-based formulation that explicitly reasons over this trade-off: at each step, the robot evaluates multiple candidate actions, weighing expected packing benefit against estimated operational time. This enables time-aware strategies that selectively accept increased operational time when it yields meaningful spatial improvements. Our method, STEP (Space-Time Efficient Packing), uses a Transformer-based policy conditioned on dynamic preferences,  and allows generalization across candidate set sizes and integration with standard placement modules. It achieves higher packing density without compromising operational time.
+            Robotic bin packing is widely deployed in warehouse automation, with current systems achieving robust performance through heuristic and learning-based strategies. These systems must balance compact placement with rapid execution, where selecting alternative items or reorienting them can improve space utilization but introduce additional time. We propose a selection-based formulation that explicitly reasons over this trade-off: at each step, the robot evaluates multiple candidate actions, weighing expected packing benefit against estimated operational time. This enables time-aware strategies that selectively accept increased operational time when it yields meaningful spatial improvements. Our method, STEP (Space-Time Efficient Packing), uses a preference-conditioned, Transformer-based reinforcement learning policy, and allows generalization across candidate set sizes and integration with standard placement modules. It achieves a 44% reduction in operational time without compromising packing density.
           </p>
         </div>
       </div>
