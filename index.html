@@ -29,6 +29,40 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <style>
+    .author-email {
+      position: relative;
+      display: inline-block;
+      margin-left: 2px;
+      font-size: 0.6em;
+      vertical-align: super;
+      color: #888;
+      cursor: default;
+      text-decoration: none;
+    }
+    .author-email:hover { color: #333; }
+    .author-email .email-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      background: #333;
+      color: #fff;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      padding: 3px 7px;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      transition: opacity 0.15s;
+      z-index: 100;
+    }
+    .author-email:hover .email-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- <script defer src="./static/js/fontawesome.all.min.js"></script> -->
@@ -51,20 +85,20 @@
           <h1 class="title is-1 publication-title">Preference-Conditioned Reinforcement Learning for Space-Time Efficient Online 3D Bin Packing</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/nikita-sarawgi">Nikita Sarawgi</a><sup>1</sup>,</span>
+              <a href="https://www.linkedin.com/in/nikita-sarawgi">Nikita Sarawgi</a><sup>1</sup><span class="author-email"><i class="fas fa-envelope"></i><span class="email-tooltip">sarawgi.nikita@gmail.com</span></span>,</span>
             <span class="author-block">
-              <a href="https://omey-manyar.com/">Omey M. Manyar</a><sup>1</sup>,</span>
+              <a href="https://omey-manyar.com/">Omey M. Manyar</a><sup>1</sup></span>,
             <span class="author-block">
-              Fan Wang<sup>2</sup>,
+              Fan Wang<sup>2</sup></span>,
             </span>
             <span class="author-block">
-              Thinh H. Nguyen<sup>2</sup>,
+              Thinh H. Nguyen<sup>2</sup></span>,
             </span>
             <span class="author-block">
-              <a href="https://danielseita.github.io/">Daniel Seita</a><sup>1</sup>,
+              <a href="https://danielseita.github.io/">Daniel Seita</a><sup>1</sup><span class="author-email"><i class="fas fa-envelope"></i><span class="email-tooltip">seita@usc.edu</span></span>,
             </span>
             <span class="author-block">
-              <a href="https://sites.usc.edu/skgupta/">Satyandra K. Gupta</a><sup>1</sup>,
+              <a href="https://sites.usc.edu/skgupta/">Satyandra K. Gupta</a><sup>1</sup><span class="author-email"><i class="fas fa-envelope"></i><span class="email-tooltip">guptask@usc.edu</span></span>
             </span>
           </div>
 
